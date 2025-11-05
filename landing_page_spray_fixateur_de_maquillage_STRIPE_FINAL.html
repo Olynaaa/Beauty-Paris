@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spray Fixateur de Maquillage – Waterproof, Longue tenue</title>
+  <meta name="description" content="Spray fixateur de maquillage waterproof à l'aloe vera & vitamine E. Zéro transfert, longue tenue, fini frais. Livraison rapide. Prix : 4,95 €." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff; /* page background */
+      --card:#ffffff; /* panels/cards */
+      --text:#111111; /* main text */
+      --muted:#6b7280; /* secondary */
+      --accent:#ffffff; /* white for CTA */
+      --accent-ink:#111; /* black for CTA */
+      --brand:#e5e7eb; /* borders */
+      --good:#2ecc71;
+      --bad:#ff6b6b;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:#ffffff;color:var(--text);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,sans-serifcolor:var(--text);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+    img{max-width:100%;display:block}
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header.nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);background:rgba(255,255,255,.82);border-bottom:1px solid var(--brand)}
+    header .bar{display:flex;align-items:center;justify-content:space-between}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.5px}
+    .logo .dot{width:10px;height:10px;border-radius:50%;background:var(--text)}
+    .pill{padding:8px 14px;border:1px solid var(--brand);border-radius:999px;color:var(--muted);font-size:12px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .hero .tag{display:inline-flex;align-items:center;gap:8px;background:#121723;border:1px solid var(--brand);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:12px}
+    .hero h1{font-size:40px;line-height:1.1;margin:.4rem 0 1rem}
+    .hero p.lede{color:var(--muted);font-size:16px}
+    .price{display:flex;align-items:baseline;gap:10px;margin:16px 0 8px}
+    .price .num{font-size:36px;font-weight:700}
+    .price .unit{opacity:.85}
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+    .badge{padding:8px 12px;border:1px dashed #2a3144;border-radius:10px;color:#374151;font-size:12px}
+
+    .media-card{position:relative;background:#ffffff;border:1px solid var(--brand);border-radius:24px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.35)}
+    .media-card .ribbon{position:absolute;top:18px;left:18px;background:#ffffff;color:#111;border:1px solid #333;padding:6px 10px;border-radius:8px;font-size:12px}
+    .media-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .media-grid img{aspect-ratio:4/3;width:100%;height:auto;object-fit:cover;border-radius:12px}
+
+    /* CTA */
+    .cta{display:flex;gap:12px;align-items:center;margin-top:12px}
+    .qty{display:flex;align-items:center;border:1px solid var(--brand);border-radius:12px;overflow:hidden}
+    .qty button{all:unset;cursor:pointer;padding:8px 12px;background:#f3f4f6;color:#111}
+    .qty input{width:52px;text-align:center;padding:8px;border:0;background:transparent;color:#fff}
+
+    .btn{appearance:none;cursor:pointer;border:0;border-radius:14px;padding:14px 18px;font-weight:700;letter-spacing:.3px}
+    .btn.primary{background:var(--accent);color:var(--accent-ink);border:2px solid #000}
+    .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--brand)}
+
+    /* Sections */
+    section{padding:56px 0;border-top:1px solid var(--brand)}
+    h2{font-size:28px;margin:0 0 18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--card);border:1px solid var(--brand);border-radius:18px;padding:18px}
+    .card h3{margin:4px 0 8px;font-size:18px}
+    .muted{color:var(--muted)}
+
+    /* Testimonials */
+    .stars{letter-spacing:2px}
+    .quote{background:linear-gradient(180deg,#141a27,#101420);border:1px solid var(--brand);border-radius:16px;padding:16px}
+
+    /* Drawer (Panier) */
+    .drawer{position:fixed;inset:0;display:none}
+    .drawer.active{display:block}
+    .drawer .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+    .drawer .panel{position:absolute;right:0;top:0;height:100%;width:min(430px,100%);background:#ffffff;border-left:1px solid var(--brand);display:flex;flex-direction:column}
+    .panel header{display:flex;align-items:center;justify-content:space-between;padding:18px;border-bottom:1px solid #1e2433}
+    .panel .body{padding:18px;flex:1;overflow:auto}
+    .line{display:flex;gap:12px}
+    .line + .line{margin-top:12px}
+    .thumb{width:72px;height:72px;border-radius:12px;object-fit:cover;border:1px solid var(--brand)}
+    .row{display:flex;align-items:center;justify-content:space-between}
+    .total{font-weight:700;font-size:20px}
+    .panel footer{padding:18px;border-top:1px solid var(--brand)}
+    .panel small{color:var(--muted)}
+
+    /* Payment page placeholder */
+    .checkout{max-width:760px;margin:0 auto}
+    .checkout .box{background:var(--card);border:1px solid var(--brand);border-radius:18px;padding:18px}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr}
+    }
+    @media (max-width: 720px){
+      .grid-3{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- ================= NAV ================= -->
+  <header class="nav">
+    <div class="container bar">
+      <div class="logo"><span class="dot"></span> BEAUTY LAB PARIS</div>
+      <div class="pill">Livraison rapide 24-48h • Retours 14 jours</div>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <main class="container">
+    <section class="hero" id="top">
+      <div>
+        <span class="tag">Nouveauté • Formule avancée</span>
+        <h1>Spray Fixateur de Maquillage <br/>Waterproof & Longue Tenue</h1>
+        <p class="lede">Fini les retouches. Notre brume ultra-fine fixe le maquillage, empêche le transfert, lisse sans marquer les plis et apporte une sensation fraîche toute la journée. Enrichi en <b>Aloe Vera</b> et <b>Vitamine&nbsp;E</b> pour prendre soin de votre peau.</p>
+        <div class="price">
+          <div class="num" id="price">4,95&nbsp;€</div>
+          <div class="unit muted">TTC • 30&nbsp;ml</div>
+        </div>
+        <div class="badges">
+          <span class="badge">Résistant à l'eau</span>
+          <span class="badge">Zéro transfert</span>
+          <span class="badge">Fini naturel</span>
+          <span class="badge">Testé dermatologiquement</span>
+        </div>
+        <div class="cta">
+          <div class="qty" aria-label="Quantité">
+            <button type="button" id="minus" aria-label="Diminuer">−</button>
+            <input id="qty" type="number" value="1" min="1" inputmode="numeric" />
+            <button type="button" id="plus" aria-label="Augmenter">+</button>
+          </div>
+          <button class="btn primary" id="addToCart">Ajouter au panier</button>
+          <button class="btn ghost" onclick="document.getElementById('benefits').scrollIntoView({behavior:'smooth'})">Pourquoi vous allez l'adorer</button>
+        </div>
+        <p class="muted" style="margin-top:8px">Paiement sécurisé • Sans risque • Satisfait ou remboursé</p>
+      </div>
+      <div class="media-card">
+        <div class="ribbon">Photos studio</div>
+        <div class="media-grid">
+          <!-- ⚠️ Remplacez les chemins d'images ci-dessous par vos photos haute qualité. Exemple: /assets/makeup-fixer-1.jpg -->
+          <!-- Les photos ci-dessous sont désormais de véritables clichés studio montrant l'efficacité du produit. -->
+          <img src="assets/makeup-fixer-1.jpg" alt="Résultat waterproof – le spray crée une barrière protectrice sous l'eau" />
+          <img src="assets/makeup-fixer-2.jpg" alt="Spray fixateur – flacon élégant en studio" />
+          <img src="assets/makeup-fixer-3.jpg" alt="Application du spray fixateur sur le visage" />
+          <img src="assets/makeup-fixer-4.jpg" alt="Fini frais et naturel en fin de journée" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BENEFITS ================= -->
+    <section id="benefits">
+      <h2>Pourquoi les femmes l'ajoutent à leur trousse beauté</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Tenue jusqu'à 16h</h3>
+          <p class="muted">Fixe fond de teint, blush et fards pour un teint qui ne bouge pas. Dites adieu aux retouches de l'après-midi.</p>
+        </div>
+        <div class="card">
+          <h3>Confort & soin</h3>
+          <p class="muted">L'<b>Aloe Vera</b> apaise et hydrate, la <b>Vitamine E</b> protège. Une brume soin qui respecte toutes les peaux.</p>
+        </div>
+        <div class="card">
+          <h3>Fini naturel</h3>
+          <p class="muted">Zéro effet masque, zéro traces. Votre maquillage reste frais, lumineux et sans transfert sur les vêtements.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HOW TO ================= -->
+    <section>
+      <h2>Mode d'emploi</h2>
+      <div class="grid-3">
+        <div class="card"><h3>1. Préparez</h3><p class="muted">Agitez le flacon. Tenez à 20–25&nbsp;cm du visage.</p></div>
+        <div class="card"><h3>2. Vaporisez</h3><p class="muted">Fermez les yeux et brumisez en X puis en T pour une couverture parfaite.</p></div>
+        <div class="card"><h3>3. Fixez</h3><p class="muted">Laissez sécher quelques secondes. Résultat: maquillage scellé toute la journée.</p></div>
+      </div>
+    </section>
+
+    <!-- ================= TESTIMONIALS ================= -->
+    <section>
+      <h2>Elles en parlent mieux que nous</h2>
+      <div class="grid-3">
+        <div class="quote">
+          <div class="stars">★★★★★</div>
+          <p>« Même après une journée de travail + pluie, mon eyeliner n'a pas bougé. J'adore ! » — <b>Camille</b></p>
+        </div>
+        <div class="quote">
+          <div class="stars">★★★★★</div>
+          <p>« Brume ultra fine, odeur légère, rendu naturel. Pour 4,95 €, c'est imbattable. » — <b>Sarah</b></p>
+        </div>
+        <div class="quote">
+          <div class="stars">★★★★☆</div>
+          <p>« Je l'utilise aussi pour raviver le teint l'après-midi. Livraison super rapide. » — <b>Imane</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section>
+      <h2>Questions fréquentes</h2>
+      <div class="grid-3">
+        <div class="card"><h3>Convient-il aux peaux sensibles&nbsp;?</h3><p class="muted">Oui. Formule douce sans alcool desséchant, enrichie en Aloe Vera et Vitamine&nbsp;E.</p></div>
+        <div class="card"><h3>Est-ce vraiment waterproof&nbsp;?</h3><p class="muted">Oui, la formule résiste à l'eau et à la transpiration tout en restant confortable.</p></div>
+        <div class="card"><h3>Délai de livraison</h3><p class="muted">Expédition 24h, livraison rapide 24–48h selon la région. Suivi inclus.</p></div>
+      </div>
+    </section>
+
+    <!-- ================= CHECKOUT PLACEHOLDER ================= -->
+    <section id="paiement" class="checkout">
+      <h2>Paiement sécurisé</h2>
+      <div class="box">
+        <p class="muted">Cette section est prête pour votre page de paiement. <br>➡️ <b>Collez simplement votre URL Stripe Checkout</b> dans l'attribut <code>data-checkout</code> du bouton ci-dessous. Tout est déjà connecté.</p>
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn primary" id="checkoutBtn" data-checkout="https://buy.stripe.com/eVqcN4fVXgjMf7cfKSeAg01" href="https://buy.stripe.com/eVqcN4fVXgjMf7cfKSeAg01" rel="noopener" aria-label="Payer en toute sécurité via Stripe">Payer avec Stripe</a>
+          <a class="btn ghost" href="#top">Retour à la fiche produit</a>
+        </div>
+        <small class="muted">Aucun paiement n'est effectué sur cette page de démonstration.</small>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer style="border-top:1px solid var(--brand)">
+    <div class="container" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+      <p class="muted">© BEAUTY LAB PARIS — Qualité studio, résultats longue tenue.</p>
+      <p class="muted">Service client 7j/7 • contact@beautylab.example</p>
+    </div>
+  </footer>
+
+  <!-- ================= DRAWER (PANIER) ================= -->
+  <aside class="drawer" id="drawer">
+    <div class="backdrop" aria-hidden="true"></div>
+    <div class="panel" role="dialog" aria-modal="true" aria-label="Récapitulatif du panier">
+      <header>
+        <strong>Votre panier</strong>
+        <button class="btn ghost" id="closeDrawer">Fermer</button>
+      </header>
+      <div class="body">
+        <div class="line">
+          <img class="thumb" src="assets/makeup-fixer-1.jpg" alt="Spray Fixateur 30 ml" />
+          <div style="flex:1">
+            <div class="row"><strong>Spray Fixateur de Maquillage</strong><span id="linePrice">4,95&nbsp;€</span></div>
+            <div class="row" style="margin-top:8px">
+              <small class="muted">30 ml • Waterproof</small>
+              <div class="qty">
+                <button type="button" id="cminus">−</button>
+                <input id="cqty" type="number" value="1" min="1" />
+                <button type="button" id="cplus">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr style="border-color:#1e2433;margin:18px 0">
+        <div class="row"><small class="muted">Sous-total</small><span id="subTotal">4,95&nbsp;€</span></div>
+        <div class="row"><small class="muted">Livraison rapide</small><span id="shipping">Offerte</span></div>
+        <div class="row" style="margin-top:8px"><span class="total">Total</span><span class="total" id="grandTotal">4,95&nbsp;€</span></div>
+        <p class="muted" style="margin-top:8px">Taxes incluses. Livraison suivie 24–48h.</p>
+      </div>
+      <footer>
+        <a class="btn primary" id="goCheckout" href="#">Passer au paiement</a>
+        <small>Le bouton ouvre la section « Paiement sécurisé ». Remplacez l'URL par votre lien Stripe quand vous serez prêt.</small>
+      </footer>
+    </div>
+  </aside>
+
+  <script>
+    // ===== Utilitaires =====
+    const EURO = (n)=> new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR'}).format(n);
+    const PRICE = 4.95;
+
+    // ===== Quantité (bloc principal) =====
+    const qty = document.getElementById('qty');
+    document.getElementById('minus').onclick = ()=>{ qty.value = Math.max(1, (parseInt(qty.value)||1)-1) }
+    document.getElementById('plus').onclick  = ()=>{ qty.value = (parseInt(qty.value)||1)+1 }
+
+    // ===== Panier (drawer) =====
+    const drawer = document.getElementById('drawer');
+    const cqty = document.getElementById('cqty');
+    const subTotal = document.getElementById('subTotal');
+    const grandTotal = document.getElementById('grandTotal');
+    const linePrice = document.getElementById('linePrice');
+
+    function openDrawer(){ drawer.classList.add('active'); document.body.style.overflow='hidden'; }
+    function closeDrawer(){ drawer.classList.remove('active'); document.body.style.overflow='auto'; }
+
+    function recalc(){
+      const q = Math.max(1, parseInt(cqty.value)||1);
+      const st = q * PRICE;
+      linePrice.textContent = EURO(PRICE);
+      subTotal.textContent = EURO(st);
+      grandTotal.textContent = EURO(st); // Livraison offerte
+    }
+
+    document.getElementById('addToCart').onclick = ()=>{
+      // synchronise la quantité choisie
+      cqty.value = Math.max(1, parseInt(qty.value)||1);
+      recalc();
+      openDrawer();
+    };
+    document.getElementById('closeDrawer').onclick = closeDrawer;
+    drawer.querySelector('.backdrop').onclick = closeDrawer;
+
+    document.getElementById('cminus').onclick = ()=>{ cqty.value = Math.max(1,(parseInt(cqty.value)||1)-1); recalc(); };
+    document.getElementById('cplus').onclick  = ()=>{ cqty.value = (parseInt(cqty.value)||1)+1; recalc(); };
+    cqty.addEventListener('input', recalc);
+
+    // ===== Checkout navigation =====
+    document.getElementById('goCheckout').onclick = (e)=>{
+      e.preventDefault();
+      closeDrawer();
+      document.getElementById('paiement').scrollIntoView({behavior:'smooth'});
+    };
+
+    // Bouton Stripe prêt à l'emploi
+    // 👉 Remplacez data-checkout="#" par votre URL Stripe Checkout.
+    document.getElementById('checkoutBtn').addEventListener('click', function(e){
+      const url = this.getAttribute('data-checkout');
+      if(url && url !== '#'){ this.setAttribute('href', url); }
+      else {
+        e.preventDefault();
+        alert('Ajoutez votre lien Stripe Checkout dans l\'attribut data-checkout du bouton.');
+      }
+    });
+  </script>
+</body>
+</html>
